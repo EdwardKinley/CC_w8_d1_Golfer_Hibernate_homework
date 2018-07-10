@@ -87,5 +87,34 @@ public class DBGolfer {
         return result;
     }
 
+    public static Golfer findByAge(int age) {
+        Golfer result = null;
+        session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            Criteria cr = session.createCriteria(Golfer.class);
+            cr.add(Restrictions.eq("age", age));
+            result = (Golfer) cr.uniqueResult();
+        } catch(HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
+    public static List<Golfer> findOlderThan(int age) {
+        List<Golfer> results = null;
+        session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            Criteria cr = session.createCriteria(Golfer.class);
+            cr.add(Restrictions.gt("age", age));
+            results = cr.list();
+        } catch(HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return results;
+    }
 
 }

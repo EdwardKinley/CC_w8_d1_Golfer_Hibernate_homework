@@ -17,10 +17,11 @@ public class Runner {
 
         List<Golfer> golfers = DBGolfer.getAll();
 
-        System.out.println(DBGolfer.findById(2).getFirstName());
-        System.out.println(DBGolfer.findByFirstName("Robert").getLastName());
-        System.out.println(DBGolfer.findByFirstName("Donald").prettyName());
+        System.out.println(DBGolfer.findById(2).prettyName());
+        System.out.println(DBGolfer.findByFirstName("Robert").prettyName());
         System.out.println(DBGolfer.findByLastName("Jackson").prettyName());
+        System.out.println(DBGolfer.findByAge(57).prettyName());
+        System.out.println(DBGolfer.findOlderThan(60));
 
 
         System.exit(0);
